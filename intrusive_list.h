@@ -4,7 +4,7 @@
 #include <type_traits>
 
 /*
-Я размести всё в неймспейсе, чтобы подсократить имена:
+Я разместил всё в неймспейсе, чтобы подсократить имена:
 intrusive_list         -> list
 intrusive_list_element -> list_element
 default_intrusive_tag  -> default_tag.
