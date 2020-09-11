@@ -73,6 +73,7 @@
 }
 </pre></div>
     <p>Объекты которые необходимо хранить в списке наследуются от <span class="codein">intrusive::list_element&lt;Tag&gt;</span>. Шаблонный параметр <span class="codein">Tag</span> позволяет пользовательскому классу отнаследоваться сразу несколько раз от <span class="codein">intrusive::list_element</span> если это необходимо. Чтобы указать <span class="codein">intrusive::list&lt;T, Tag&gt;</span> какую из баз у <span class="codein">T</span> он использует, ему передаётся <span class="codein">Tag</span> вторым параметром.</p>
+    <p>Если у <span class="codein">list_element</span> вызывается деструктор и этот <span class="codein">list_element</span> добавлен в какой-то список, то он должен быть автоматически удалён из этого списка (в Boost.Intrusive такое поведение называется <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/intrusive/auto_unlink_hooks.html">auto-unlink hooks</a>).</p>
     <h3>Список функций</h3>
     <div class="codeblock"><pre><span class="keyword">namespace</span> <span class="type">intrusive</span>
 {
@@ -86,7 +87,8 @@
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> <span class="type">Tag</span> = <span class="type">default_tag</span>&gt;
     <span class="keyword">struct</span> <span class="type">list_element</span>
     {
-        <span class="comment">/* Определяется реализацией */</span>
+        <span class="comment">/* Отвязывает элемент из списка в котором он находится. */</span>
+        <span class="keyword">void</span> <span class="var">unlink</span>();
     };
 
     <span class="keyword">template</span> &lt;<span class="keyword">typename</span> <span class="type">T</span>, <span class="keyword">typename</span> <span class="type">Tag</span> = <span class="type">default_tag</span>&gt;
