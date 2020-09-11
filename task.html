@@ -48,7 +48,7 @@
   </head>
   <body>
     <h2>Задание intrusive_list</h2>
-    <p>В данном задании необходимо написать intrusive_list, который можно использовать следующим образом:</p>
+    <p>В данном задании необходимо написать <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/intrusive/intrusive_vs_nontrusive.html"><span class="codein">intrusive_list</span></a>. <span class="codein">intrusive_list</span> это такой контейнер, который представляется из себя двусвязный список. В отличие от <span class="codein">std::list</span> он не делает копии элементов вставляемых в список, а строит список из тех объектов, что ему передаются в <span class="codein">insert</span>, <span class="codein">push_front</span> и <span class="codein">push_back</span>. Пример использования:</p>
     <div class="codeblock"><pre><span class="keyword">struct</span> <span class="type">bookmark</span> : <span class="type">intrusive</span>::<span class="type">list_element</span>&lt;<span class="keyword">struct</span> <span class="type">bookmark_tag</span>&gt;
 {
     <span class="type">uint32_t</span> <span class="var">page</span>;
@@ -72,7 +72,7 @@
         <span class="type">std</span>::<span class="var">cout</span> &lt;&lt; e.<span class="var">get_page</span>() &lt;&lt; '\n';
 }
 </pre></div>
-    <p>Объекты которые необходимо хранить в списке наследуются от <span class="codein">intrusive::list_element&lt;Tag&gt;</span>. Шаблонный параметр <span class="codein">Tag</span> позволяет пользовательскому классу отнаследоваться сразу несколько раз от <span class="codein">intrusive::list_element</span> если это необходимо. Чтобы указать <span class="codein">intrusive::list&lt;T, Tag&gt;</span> какую из баз у <span class="codein">T</span> он использует, ему передаётся <span class="codein">Tag</span> вторым параметром.</p>
+    <p>В <span class="codein">intrusive_list</span> можно добавлять объекты не любых типов, а лишь тех, что наследуются от <span class="codein">intrusive::list_element&lt;Tag&gt;</span>. Шаблонный параметр <span class="codein">Tag</span> позволяет пользовательскому классу отнаследоваться сразу несколько раз от <span class="codein">intrusive::list_element</span> если это необходимо. Это позволяет добавлять объекты сразу в несколько разных списков. Чтобы указать <span class="codein">intrusive::list&lt;T, Tag&gt;</span> какую из баз у <span class="codein">T</span> он использует, ему передаётся <span class="codein">Tag</span> вторым параметром.</p>
     <p>Если у <span class="codein">list_element</span> вызывается деструктор и этот <span class="codein">list_element</span> добавлен в какой-то список, то он должен быть автоматически удалён из этого списка (в Boost.Intrusive такое поведение называется <a href="https://www.boost.org/doc/libs/1_74_0/doc/html/intrusive/auto_unlink_hooks.html">auto-unlink hooks</a>).</p>
     <h3>Список функций</h3>
     <div class="codeblock"><pre><span class="keyword">namespace</span> <span class="type">intrusive</span>
